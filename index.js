@@ -165,6 +165,18 @@ function futureOnly({ taf }) {
   });
 }
 
+function _cloudBaseFormat(elCloudBases) {
+  if (elCloudBases === undefined) {
+    return '';
+  } else if (elCloudBases.length === 3) {
+    return '00' + elCloudBases.substring(0, 1);
+  } else if (elCloudBases.length === 4) {
+    return '0' + elCloudBases.substring(0, 2);
+  } else if (elCloudBases.length === 5) {
+    return elCloudBases.substring(0, 3);
+  }
+}
+
 function skyConditions({ forecast }) {
   if (!forecast.sky_condition) {
     return;
@@ -184,7 +196,7 @@ function skyConditions({ forecast }) {
     if (el.vert_vis_ft == undefined) {
       elVerticalVis = '';
     } else {
-      elVerticalVis = 'VV' + cloudBaseFormat(el.vert_vis_ft);
+      elVerticalVis = 'VV' + _cloudBaseFormat(el.vert_vis_ft);
     }
     if (elSkyCover == 'OVX') {
       elSkyCover = '';
@@ -193,23 +205,11 @@ function skyConditions({ forecast }) {
       output +
       ' ' +
       elSkyCover +
-      cloudBaseFormat(elCloudBases) +
+      _cloudBaseFormat(elCloudBases) +
       elCloudType +
       elVerticalVis;
   });
   return output;
-}
-
-function cloudBaseFormat({ elCloudBases }) {
-  if (elCloudBases === undefined) {
-    return '';
-  } else if (elCloudBases.length === 3) {
-    return '00' + elCloudBases.substring(0, 1);
-  } else if (elCloudBases.length === 4) {
-    return '0' + elCloudBases.substring(0, 2);
-  } else if (elCloudBases.length === 5) {
-    return elCloudBases.substring(0, 3);
-  }
 }
 
 module.exports = {
@@ -218,6 +218,5 @@ module.exports = {
   wind,
   flightCategory,
   futureOnly,
-  skyConditions,
-  cloudBaseFormat
+  skyConditions
 };

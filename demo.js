@@ -47,6 +47,11 @@ var inspect = require('eyes').inspector({ maxLength: 99999 });
       taf.forecast.forEach((forecast) => {
         console.log(helpers.skyConditions({ forecast }));
       });
+    },
+    cloudBaseFormat: function () {
+      taf.forecast.forEach((forecast) => {
+        console.log(helpers.cloudBaseFormat({ forecast }));
+      });
     }
   };
 
