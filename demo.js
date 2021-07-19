@@ -6,7 +6,7 @@ var inspect = require('eyes').inspector({ maxLength: 99999 });
 
 (async function () {
   // for the demo I'll use KSRQ and I already know that it's in America/New_York tz
-  var taf = await getTaf('ksrq');
+  var taf = await getTaf('krdu');
   inspect(taf);
   var timeZone = 'America/New_York';
 
@@ -28,16 +28,6 @@ var inspect = require('eyes').inspector({ maxLength: 99999 });
     changeIndicator: function () {
       taf.forecast.forEach((forecast) =>
         console.log(helpers.changeIndicator({ forecast }))
-      );
-    },
-    windDir: function () {
-      taf.forecast.forEach((forecast) =>
-        console.log(helpers.windDir({ forecast }))
-      );
-    },
-    windSpeed: function () {
-      taf.forecast.forEach((forecast) =>
-        console.log(helpers.windSpeed({ forecast }))
       );
     },
     wind: function () {

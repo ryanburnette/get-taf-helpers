@@ -215,8 +215,6 @@ function cloudBaseFormat({ elCloudBases }) {
 module.exports = {
   localTime,
   changeIndicator,
-  windDir,
-  windSpeed,
   wind,
   skyCategory,
   vis,
