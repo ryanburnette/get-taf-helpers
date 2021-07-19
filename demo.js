@@ -42,6 +42,11 @@ var inspect = require('eyes').inspector({ maxLength: 99999 });
     },
     futureOnly: function () {
       console.log(helpers.futureOnly({ taf }));
+    },
+    skyConditions: function () {
+      taf.forecast.forEach((forecast) => {
+        console.log(helpers.skyConditions({ forecast }));
+      });
     }
   };
 
