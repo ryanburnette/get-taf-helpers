@@ -135,12 +135,12 @@ function visCategory({ forecast }) {
   if (!forecast.visibility_statute_mi) {
     return 1; //vfr
   }
-  var vis = vis({ forecast });
-  if (vis < 1) {
+  var v = vis({ forecast });
+  if (v < 1) {
     return 4; //lifr
-  } else if (vis < 3 && vis > 1) {
+  } else if (v < 3 && v > 1) {
     return 3; //ifr
-  } else if (vis <= 5 && vis >= 3) {
+  } else if (v <= 5 && v >= 3) {
     return 2; //mvfr
   }
   return 1; //vfr
