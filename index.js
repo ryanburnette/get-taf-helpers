@@ -33,18 +33,18 @@ function changeIndicator({ forecast, i }) {
   return forecast.change_indicator;
 }
 
-function windDir({ forecast }) {
+function _windDir({ forecast }) {
   var wd = forecast.wind_dir_degrees;
   if (wd.length === 3) {
     return wd;
   } else if (wd.length === 2) {
-    return '0' + windDir;
+    return '0' + wd;
   } else if (wd == '0') {
     return '360';
   }
 }
 
-function windSpeed({ forecast }) {
+function _windSpeed({ forecast }) {
   var ws = forecast.wind_speed_kt;
   if (ws.length === 1) {
     return '0' + ws;
@@ -57,11 +57,11 @@ function wind({ forecast }) {
   if (!forecast.wind_dir_degrees || !forecast.wind_speed_kt) {
     return '';
   } else if (!forecast.wind_gust_kt) {
-    return windDir({ forecast }) + windSpeed({ forecast }) + 'KT';
+    return _windDir({ forecast }) + _windSpeed({ forecast }) + 'KT';
   } else {
     return (
-      windDir({ forecast }) +
-      windSpeed({ forecast }) +
+      _windDir({ forecast }) +
+      _windSpeed({ forecast }) +
       'G' +
       forecast.wind_gust_kt +
       'KT'
