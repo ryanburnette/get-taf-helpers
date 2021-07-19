@@ -2,7 +2,7 @@
 
 var TZ = require('xtz');
 
-function localTime({ date, timeZone, format }) {
+function localTime({ date, timeZone }) {
   if (!date) {
     date = new Date();
   }
@@ -13,7 +13,7 @@ function localTime({ date, timeZone, format }) {
   /* console.log(tzd); */
   var hh = (tzd.hour < 10 ? '0' : '') + tzd.hour;
   var mm = (tzd.minute < 10 ? '0' : '') + tzd.minute;
-  return hh + ':' + mm
+  return hh + ':' + mm;
 }
 
 function changeIndicator({ forecast, i }) {
