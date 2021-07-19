@@ -155,16 +155,13 @@ function flightCategory({ forecast }) {
   return flightCategories[highestCategory];
 }
 
-function isPast({ forecast }) {
+function _isPast({ forecast }) {
   return new Date().getTime() >= forecast.fcst_time_to.getTime();
 }
 
-function futureOnly({ forecast }) {
-  if (!Array.isArray(forecast)) {
-    forecast = [forecast];
-  }
-  return forecast.filter(function (f) {
-    return !isPast(f);
+function futureOnly({ taf }) {
+  return taf.forecast.filter(function (forecast) {
+    return !_isPast({ forecast });
   });
 }
 
@@ -220,7 +217,6 @@ module.exports = {
   changeIndicator,
   wind,
   flightCategory,
-  isPast,
   futureOnly,
   skyConditions,
   cloudBaseFormat
