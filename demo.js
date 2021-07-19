@@ -35,20 +35,10 @@ var inspect = require('eyes').inspector({ maxLength: 99999 });
         console.log(helpers.wind({ forecast }))
       );
     },
-    skyCategory: function () {
-      taf.forecast.forEach((forecast) =>
-        console.log(helpers.skyCategory({ forecast }))
-      );
-    },
-    vis: function () {
-      taf.forecast.forEach((forecast) =>
-        console.log(helpers.vis({ forecast }))
-      );
-    },
-    visCategory: function () {
-      taf.forecast.forEach((forecast) =>
-        console.log(helpers.visCategory({ forecast }))
-      );
+    flightCategory: function () {
+      taf.forecast.forEach((forecast) => {
+        console.log(helpers.flightCategory({ forecast }));
+      });
     }
   };
 

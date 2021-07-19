@@ -147,7 +147,10 @@ function visCategory({ forecast }) {
 }
 
 function flightCategory({ forecast }) {
-  var highestCategory = Math.max(visCategory(forecast), skyCategory(forecast));
+  var highestCategory = Math.max(
+    visCategory({ forecast }),
+    skyCategory({ forecast })
+  );
   var flightCategories = ['', 'VFR', 'MVFR', 'IFR', 'LIFR'];
   return flightCategories[highestCategory];
 }
@@ -216,9 +219,6 @@ module.exports = {
   localTime,
   changeIndicator,
   wind,
-  skyCategory,
-  vis,
-  visCategory,
   flightCategory,
   isPast,
   futureOnly,
