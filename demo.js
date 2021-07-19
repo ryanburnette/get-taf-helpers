@@ -96,6 +96,11 @@ var inspect = require('eyes').inspector({ maxLength: 99999 });
       taf.forecast.forEach((forecast) => {
         console.log(helpers.cloudBaseFormat({ forecast }));
       });
+    },
+    vis: function () {
+      taf.forecast.forEach((forecast) => {
+        console.log(helpers.vis({ forecast }));
+      });
     }
   };
 

@@ -214,5 +214,6 @@ module.exports = {
   wind,
   flightCategory,
   futureOnly,
-  skyConditions
+  skyConditions,
+  vis
 };
