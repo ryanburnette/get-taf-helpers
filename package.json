@@ -16,7 +16,7 @@
   ],
   "license": "ISC",
   "dependencies": {
-    "date-fns-timezone": "^0.1.4"
+    "xtz": "^1.0.2"
   },
   "devDependencies": {
     "@ryanburnette/get-taf": "^1.2.0",

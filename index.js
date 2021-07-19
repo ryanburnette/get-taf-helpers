@@ -1,8 +1,6 @@
 'use strict';
 
-var _formatToTimeZone = require('date-fns-timezone').formatToTimeZone;
-
-var helpers = {};
+var TZ = require('xtz');
 
 function localTime({ date, timeZone, format }) {
   if (!date) {
@@ -11,10 +9,11 @@ function localTime({ date, timeZone, format }) {
   if (!timeZone) {
     timeZone = 'America/New_York';
   }
-  if (!format) {
-    format = 'HH:mm';
-  }
-  return _formatToTimeZone(date, format, { timeZone });
+  var tzd = TZ.toTimeZone(date, timeZone);
+  /* console.log(tzd); */
+  var hh = (tzd.hour < 10 ? '0' : '') + tzd.hour;
+  var mm = (tzd.minute < 10 ? '0' : '') + tzd.minute;
+  return hh + ':' + mm
 }
 
 function changeIndicator({ forecast, i }) {
