@@ -11,18 +11,47 @@ var inspect = require('eyes').inspector({ maxLength: 99999 });
   var timeZone = 'America/New_York';
 
   var demos = {
-    localTime: function () {
+    localDateTzd: function () {
       console.log(
-        'taf.issue_date',
-        helpers.localTime({ date: taf.issue_date, timeZone })
+        'taf.issue_time',
+        helpers.localDateTzd({ date: new Date(taf.issue_time), timeZone })
       );
       console.log(
         'taf.valid_time_from',
-        helpers.localTime({ date: taf.valid_time_from, timeZone })
+        helpers.localDateTzd({ date: new Date(taf.valid_time_from), timeZone })
       );
       console.log(
         'taf.valid_time_to',
-        helpers.localTime({ date: taf.valid_time_to, timeZone })
+        helpers.localDateTzd({ date: new Date(taf.valid_time_to), timeZone })
+      );
+    },
+    tzdFormatTime: function () {
+      console.log(
+        'taf.issue_time',
+        helpers.tzdFormatTime(
+          helpers.localDateTzd({
+            date: new Date(taf.issue_time),
+            timeZone
+          })
+        )
+      );
+      console.log(
+        'taf.valid_time_from',
+        helpers.tzdFormatTime(
+          helpers.localDateTzd({
+            date: new Date(taf.valid_time_from),
+            timeZone
+          })
+        )
+      );
+      console.log(
+        'taf.valid_time_to',
+        helpers.tzdFormatTime(
+          helpers.localDateTzd({
+            date: new Date(taf.valid_time_to),
+            timeZone
+          })
+        )
       );
     },
     changeIndicator: function () {
@@ -41,7 +70,22 @@ var inspect = require('eyes').inspector({ maxLength: 99999 });
       });
     },
     futureOnly: function () {
-      console.log(helpers.futureOnly({ taf }));
+      helpers.futureOnly({ taf }).forEach((fc) =>
+        console.log(
+          helpers.tzdFormatTime(
+            helpers.localDateTzd({
+              date: new Date(fc.fcst_time_from),
+              timeZone
+            })
+          ) + 'L',
+          helpers.tzdFormatTime(
+            helpers.localDateTzd({
+              date: new Date(fc.fcst_time_to),
+              timeZone
+            })
+          ) + 'L'
+        )
+      );
     },
     skyConditions: function () {
       taf.forecast.forEach((forecast) => {

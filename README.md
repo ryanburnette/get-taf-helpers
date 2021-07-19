@@ -16,7 +16,8 @@ See `demo.js` for usage.
 ```js
 var helpers = require('@ryanburnette/get-taf-helpers');
 var {
-  localTime,
+  localDateTzd,
+  tzdFormatTime,
   changeIndicator,
   wind,
   flightCategory,

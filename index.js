@@ -2,15 +2,11 @@
 
 var TZ = require('xtz');
 
-function localTime({ date, timeZone }) {
-  if (!date) {
-    date = new Date();
-  }
-  if (!timeZone) {
-    timeZone = 'America/New_York';
-  }
-  var tzd = TZ.toTimeZone(date, timeZone);
-  /* console.log(tzd); */
+function localDateTzd({ date, timeZone }) {
+  return TZ.toTimeZone(date, timeZone);
+}
+
+function tzdFormatTime(tzd) {
   var hh = (tzd.hour < 10 ? '0' : '') + tzd.hour;
   var mm = (tzd.minute < 10 ? '0' : '') + tzd.minute;
   return hh + ':' + mm;
@@ -68,27 +64,27 @@ function wind({ forecast }) {
   }
 }
 
-function skyCategory({ forecast }) {
+function _skyCategory({ forecast }) {
   var skyConditions = forecast.sky_condition;
   if (!Array.isArray(skyConditions)) {
     skyConditions = [skyConditions];
   }
-  return skyConditions.reduce(function (skyCategory, skyCondition) {
+  return skyConditions.reduce(function (_skyCategory, skyCondition) {
     if (skyCondition) {
       if (['OVC', 'BKN', 'OVX'].includes(skyCondition.sky_cover)) {
         var bases = parseFloat(skyCondition.cloud_base_ft_agl);
-        if (bases <= 3000 && skyCategory < 2) {
-          skyCategory = 2;
+        if (bases <= 3000 && _skyCategory < 2) {
+          _skyCategory = 2;
         }
-        if (bases < 1000 && skyCategory < 3) {
-          skyCategory = 3;
+        if (bases < 1000 && _skyCategory < 3) {
+          _skyCategory = 3;
         }
-        if (bases < 500 && skyCategory < 4) {
-          skyCategory = 4;
+        if (bases < 500 && _skyCategory < 4) {
+          _skyCategory = 4;
         }
       }
     }
-    return skyCategory;
+    return _skyCategory;
   }, 1);
 }
 
@@ -130,7 +126,7 @@ function vis({ forecast }) {
   }
 }
 
-function visCategory({ forecast }) {
+function _visCategory({ forecast }) {
   if (!forecast.visibility_statute_mi) {
     return 1; //vfr
   }
@@ -147,8 +143,8 @@ function visCategory({ forecast }) {
 
 function flightCategory({ forecast }) {
   var highestCategory = Math.max(
-    visCategory({ forecast }),
-    skyCategory({ forecast })
+    _visCategory({ forecast }),
+    _skyCategory({ forecast })
   );
   var flightCategories = ['', 'VFR', 'MVFR', 'IFR', 'LIFR'];
   return flightCategories[highestCategory];
@@ -212,7 +208,8 @@ function skyConditions({ forecast }) {
 }
 
 module.exports = {
-  localTime,
+  localDateTzd,
+  tzdFormatTime,
   changeIndicator,
   wind,
   flightCategory,
