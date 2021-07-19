@@ -94,10 +94,10 @@ function skyCategory({ forecast }) {
 }
 
 function vis({ forecast }) {
-  if (!forecast._visibility_statute_mi) {
+  if (!forecast.visibility_statute_mi) {
     return;
   }
-  var _vis = parseFloat(forecast._visibility_statute_mi);
+  var _vis = parseFloat(forecast.visibility_statute_mi);
   if (_vis > 6) {
     return 'P6SM';
   }
