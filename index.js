@@ -151,7 +151,7 @@ function flightCategory({ forecast }) {
 }
 
 function _isPast({ forecast }) {
-  return new Date().getTime() >= forecast.fcst_time_to.getTime();
+  return new Date().getTime() >= new Date(forecast.fcst_time_to).getTime();
 }
 
 function futureOnly({ taf }) {
