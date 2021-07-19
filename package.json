@@ -1,0 +1,30 @@
+{
+  "name": "@ryanburnette/get-taf-helpers",
+  "version": "1.0.0",
+  "description": "Opinionated helpers for using @ryanburnette/get-taf in views.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryanburnette/get-taf-helpers.git"
+  },
+  "contributors": [
+    "Ryan Burnette <ryan.burnette@gmail.com>",
+    "Michael McCracken <michael.mccracken172@gmail.com"
+  ],
+  "license": "ISC",
+  "dependencies": {
+    "@ryanburnette/get-taf": "^1.2.0",
+    "date-fns": "^2.22.1",
+    "date-fns-timezone": "^0.1.4"
+  },
+  "devDependencies": {
+    "eyes": "^0.1.8",
+    "jest": "^27.0.6",
+    "jshint": "^2.13.0",
+    "nodemon": "^2.0.12",
+    "prettier": "^2.3.2"
+  }
+}
